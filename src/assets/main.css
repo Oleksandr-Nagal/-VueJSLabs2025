@@ -1,0 +1,264 @@
+/* src/assets/main.css */
+
+/* --- Базові стилі --- */
+body {
+    margin: 0;
+    background-color: #f7f9fc;
+    font-family: Arial, sans-serif;
+}
+
+.app-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 24px;
+    color: #333;
+}
+
+/* --- Лічильники --- */
+.counters-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 32px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #555;
+    background-color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 640px) {
+    .counters-container {
+        flex-direction: row;
+    }
+}
+
+.counter-value {
+    color: #3b82f6; /* Blue */
+}
+
+/* --- Загальні компоненти --- */
+.form-card, .filter-card, .task-item {
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-bottom: 24px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #4a5568;
+}
+
+.input-field, .select-field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-field:focus, .select-field:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+.button {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    border: none;
+}
+
+.primary-button {
+    width: 100%;
+    background-color: #2563eb;
+    color: #fff;
+}
+.primary-button:hover {
+    background-color: #1d4ed8;
+}
+
+.apply-button {
+    background-color: #10b981;
+    color: #fff;
+}
+.apply-button:hover {
+    background-color: #059669;
+}
+
+.clear-button {
+    background-color: #a0aec0;
+    color: #fff;
+}
+.clear-button:hover {
+    background-color: #718096;
+}
+
+.flex-row {
+    display: flex;
+    align-items: center;
+}
+
+/* --- Фільтри --- */
+.filter-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+@media (min-width: 768px) {
+    .filter-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1024px) {
+    .filter-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* --- Список завдань --- */
+.task-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.task-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+@media (min-width: 768px) {
+    .task-item {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.task-done {
+    text-decoration: line-through;
+    color: #a0aec0;
+    opacity: 0.75;
+}
+
+.task-content {
+    flex-grow: 1;
+}
+
+.task-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #2d3748;
+    margin: 0 0 4px;
+}
+
+.task-description {
+    color: #4a5568;
+    margin: 0 0 8px;
+}
+
+.task-meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.task-priority {
+    font-weight: bold;
+    margin-top: 4px;
+}
+.priority-low { color: #10b981; }
+.priority-medium { color: #f59e0b; }
+.priority-high { color: #ef4444; }
+
+.task-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.toggle-button {
+    color: #fff;
+    font-weight: bold;
+}
+.status-active { background-color: #34d399; }
+.status-active:hover { background-color: #10b981; }
+.status-done { background-color: #f59e0b; }
+.status-done:hover { background-color: #d97706; }
+.delete-button {
+    background-color: #ef4444;
+    color: #fff;
+}
+.delete-button:hover {
+    background-color: #dc2626;
+}
+
+/* --- Пагінація --- */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+    gap: 12px;
+}
+
+.pagination-button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    background-color: #e2e8f0;
+    color: #4a5568;
+    cursor: pointer;
+}
+
+.pagination-button:hover:not(:disabled) {
+    background-color: #cbd5e0;
+}
+
+.pagination-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.page-active {
+    background-color: #3b82f6;
+    color: #fff;
+}
+.page-active:hover {
+    background-color: #2563eb;
+}
