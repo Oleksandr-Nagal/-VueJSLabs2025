@@ -1,29 +1,95 @@
-# vue-project
+# Лабораторна робота №1: To-Do List (Vue 3 Composition API)
 
-This template should help get you started developing with Vue 3 in Vite.
+Це реалізація застосунку **To-Do List** згідно з вимогами лабораторної роботи №1, що демонструє використання **Vue 3 Composition API** (`ref`, `computed`, `watch`) та основних директив.
 
-## Recommended IDE Setup
+---
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 1. Налаштування проєкту та запуск
 
-## Customize configuration
+Проєкт створено за допомогою Vite.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### 1.1. Recommended IDE Setup
 
-## Project Setup
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (рекомендовано вимкнути Vetur).
 
-```sh
-npm install
-```
+### 1.2. Кроки для запуску
 
-### Compile and Hot-Reload for Development
+1.  Встановити залежності:
+    ```sh
+    npm install
+    ```
+2.  Запустити сервер розробки:
+    ```sh
+    npm run dev
+    ```
+    Застосунок буде доступний за адресою `http://localhost:5173/` (або інший порт, вказаний у терміналі).
 
-```sh
-npm run dev
-```
+---
 
-### Compile and Minify for Production
+## 2. Реалізований функціонал
 
-```sh
-npm run build
-```
+* **CRUD:** Додавання, перемикання статусу (active/done), видалення завдань.
+* **Модель даних:** Завдання має поля: `id`, `title`, `description`, `status`, `createdAt`, `priority` (low, medium, high).
+* **Фільтрація:** Реалізована за `title`, `description`, `status`, `priority`, **`createdAt` (дата від/до)**.
+* **Лічильники:** Виведення загальної кількості, активних та виконаних завдань.
+* **Пагінація:** Обмеження 5 завдань на сторінку з навігацією.
+* **Стійкість даних (Persistence):** Збереження та відновлення списку із `LocalStorage`.
+
+---
+
+## 3. Використання Composition API (App.vue)
+
+### 3.1. Реактивний Стан (`ref`)
+
+| Змінна | Призначення |
+| :--- | :--- |
+| `tasks` | Головний масив завдань. |
+| `filters` | Об'єкт, що зберігає критерії фільтрації (включаючи `dateFrom`, `dateTo`). |
+| `currentPage` | Поточний номер сторінки пагінації. |
+
+### 3.2. Обчислювані Властивості (`computed`)
+
+Всі лічильники та логіка відображення є похідними значеннями, які автоматично оновлюються:
+
+| Computed-властивість | Призначення |
+| :--- | :--- |
+| `totalTasks` / `activeTasks` / `completedTasks` | Лічильники активних/виконаних/загальних завдань. |
+| `filteredTasks` | Застосування всіх фільтрів (текст, статус, пріоритет, **дата**) до масиву `tasks`. |
+| `paginatedTasks` | Вибірка завдань для відображення на поточній сторінці. |
+
+### 3.3. Спостерігач (`watch`) — Зберігання даних
+
+Механізм збереження даних реалізований через `watch` з опцією `{ deep: true }`.
+
+* **Де зберігається список:** У `LocalStorage` під ключем **`'tasks'`**.
+* **Як зберігається:** Спостерігач реагує на будь-яку зміну в масиві `tasks` або його елементах (наприклад, зміну статусу) та негайно записує новий стан у `LocalStorage`.
+    ```javascript
+    watch(tasks, (newTasks) => {
+        localStorage.setItem('tasks', JSON.stringify(newTasks))
+    }, { deep: true })
+    ```
+
+---
+
+## 4. Використані Директиви
+
+Основні директиви Vue 3, використані в шаблонах:
+
+| Директива | Використання | Приклад |
+| :--- | :--- | :--- |
+| **`v-model`** | Двостороннє зв'язування полів форми (`AddTaskForm`, `FilterPanel`). | `v-model="title"` |
+| **`v-for`** | Рендеринг списку завдань та елементів пагінації. | `v-for="task in tasks"` |
+| **`v-bind` (`:`)** | Динамічні атрибути, класи та пропси. | `:class="{ 'page-active': page === currentPage }"`, `:disabled="..."` |
+| **`v-on` (`@`)** | Обробка подій (кліки, введення). | `@click="toggleStatus"`, `@add-task="addTask"` |
+| **`v-if/v-show`** | Умовне відображення елементів (наприклад, кнопки статусу). | `v-if="paginatedTasks.length"` |
+
+---
+
+## 5. Інспектування через Vue DevTools
+
+Проєкт повністю інспектується через Vue DevTools:
+
+* **Дерево компонентів:** Відображає ієрархію, включаючи передачу даних через Props.
+* **Реактивні дані (State):** У компоненті `App` доступні для перегляду змінні **`tasks`** та **`filters`**.
+* **Computed:** Усі лічильники та фільтровані списки (як-от `activeTasks`, `filteredTasks`) можна відстежувати в реальному часі.
+* **Local Storage:** Стійкість даних перевіряється через вкладку **Application** -> **Local Storage** (ключ `tasks`).
