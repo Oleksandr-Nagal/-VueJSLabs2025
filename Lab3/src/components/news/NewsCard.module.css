@@ -1,0 +1,45 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+}
+
+.image {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  max-height: 220px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.meta {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.summary {
+  font-size: 0.9rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.read-more-btn {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: none;
+  background-color: var(--accent-color);
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
