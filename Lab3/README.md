@@ -13,16 +13,15 @@ npm run dev
 
 ## 📸 Скріншоти
 
-```markdown
 ### Головна сторінка (список новин)
-![Home](./screenshots/home.png)
+![Home](https://github.com/user-attachments/assets/0f2e65eb-8369-42bb-9110-b00fa948313d)
 
 ### Сторінка новини з модалкою реклами
-![Article](./screenshots/article.png)
+![Article](https://github.com/user-attachments/assets/76081b34-e362-42ff-b0b8-b6b1792449f5)
 
 ### Про нас
-![About](./screenshots/about.png)
-```
+![About](https://github.com/user-attachments/assets/82759c14-bda3-4b29-a788-993495aaf14e)
+
 
 ---
 
